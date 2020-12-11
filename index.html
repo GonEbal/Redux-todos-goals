@@ -5,9 +5,9 @@
     <title>My Todos Goals</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
     <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
-	<script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
-	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-	<script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
+    <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
 </head>
 
 <body>
@@ -60,12 +60,12 @@
         }
     }
 
-    function receiveDataAction (todos, goals) {
-      return {
-        type: RECEIVE_DATA,
-        todos,
-        goals,
-      }
+    function receiveDataAction(todos, goals) {
+        return {
+            type: RECEIVE_DATA,
+            todos,
+            goals,
+        }
     }
 
     function todos(state = [], action) {
@@ -77,8 +77,8 @@
             case TOGGLE_TODO:
                 return state.map((todo) => todo.id !== action.id ? todo :
                     Object.assign({}, todo, { complete: !todo.complete }))
-            case RECEIVE_DATA :
-          		return action.todos
+            case RECEIVE_DATA:
+                return action.todos
             default:
                 return state
         }
@@ -86,24 +86,24 @@
 
     function goals(state = [], action) {
         switch (action.type) {
-            case ADD_GOAL :
+            case ADD_GOAL:
                 return state.concat([action.goal])
-            case REMOVE_GOAL :
+            case REMOVE_GOAL:
                 return state.filter((goal) => goal.id !== action.id)
-            case RECEIVE_DATA :
-          		return action.goals
-            default :
+            case RECEIVE_DATA:
+                return action.goals
+            default:
                 return state
         }
     }
 
-    function loading (state = true, action) {
-      switch(action.type) {
-        case RECEIVE_DATA :
-          return false
-        default :
-          return state
-      }
+    function loading(state = true, action) {
+        switch (action.type) {
+            case RECEIVE_DATA:
+                return false
+            default:
+                return state
+        }
     }
 
     const checker = (store) => (next) => (action) => {
@@ -126,9 +126,9 @@
 
     const logger = (store) => (next) => (action) => {
         console.group(action.type)
-	        console.log('The action: ', action)
-	        const result = next(action)
-	        console.log('The new state: ', store.getState())
+        console.log('The action: ', action)
+        const result = next(action)
+        console.log('The new state: ', store.getState())
         console.groupEnd()
         return result
     }
@@ -139,9 +139,8 @@
         loading,
     }), Redux.applyMiddleware(checker, logger))
     </script>
-
-     <script type='text/babel'>
-	    function List (props) {
+    <script type='text/babel'>
+        function List (props) {
 	      return (
 	        <ul>
 	          {props.items.map((item) => (
